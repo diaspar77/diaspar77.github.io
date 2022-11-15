@@ -1,0 +1,1259 @@
+<html>
+<meta charset="UTF-8">
+<body style="background-color:#d6b575 ">
+<style>
+ p {font-family: 'New Times Roman';
+      color: #222222;
+      font-size:18px;
+      line-height: 1.5;
+      word-space: 12px;        
+            
+    
+     }
+    
+     .des {font-style:italic; font-size:18px;  line-height: 1.5;
+      word-space: 12px;    }
+    
+      .foot{ font-size:12px;color:#b8884e ;  }
+    
+     @media screen and (max-width: 480px) {
+         .center {{ margin:auto; width:100%; border:1px solid grey; padding-left:10px; padding-right: 10px; padding-top: 20px; padding-bottom: 0px}
+   
+            
+         }
+     }
+    
+    
+    
+     .center { margin:auto; width:80%; border:1px solid  #5e3e17; padding-left:20px; padding-right: 20px; padding-top: 20px; padding-bottom: 0px}
+   
+     h3 {color: #5e3e17 ; font-size:20px;}
+    
+     a:link {
+          text-decoration:none;
+          color: #5e3e17 ;
+          }
+          a:visited {
+          text-decoration:none;
+          color: #5e3e17 ;
+          }
+          a:hover {
+          text-decoration:underline;
+          color: #BF81CF;
+          }
+    
+   
+     body {
+     
+      background-color:white;
+     
+     
+     }
+    
+     div {background-color:#d6b575 ;}
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+input[type="submit"]{
+    /* change these properties to whatever you want */
+    background-color: lightblue;
+    color: purple;
+    border-radius: 20px;
+    width: 200px;
+    height:100px;
+    font-size: 1em;
+    font-family:'Courier New';
+}
+
+#mess {
+
+ background-color: lightblue;
+    color: black;
+    border-radius: 20px;
+    width: 900px;
+    height: 90px;
+    font-size: 1em;
+font-family:'Courier New';
+}
+
+
+#messsent {
+
+ background-color: #b8884e ;
+    color: black;
+    border-radius: 12px;
+    width: 100px;
+    height: 25px;
+    font-size: 0.5em;
+font-family:'Courier New';
+}
+
+#newmess {
+ background-color: lightpink;
+    color: green;
+    border-radius: 10px;
+    width: 700px;
+    height: 70px;
+    font-size: 1.5em;
+
+
+font-family:'Courier New';
+
+}
+</style>
+<script>
+ MathJax = {
+   tex: {
+     inlineMath: [['$', '$'], ['\\(', '\\)']]
+   },
+   svg: {
+     fontCache: 'global'
+   }
+ };
+ 
+ </script>
+
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+     <br>
+     
+    
+      <a href="resources.txt"> <a href="../index.html">Back to Main Page</a>
+    
+     
+        <h1 style="text-align:center;font-size:44px;color:#5e3e17 ;">Logos-Phainomenon Blog</h1>
+        
+        <div style="text-align:center;color:#19648a; background-color: #d6b575 "><i> </i></div><br>
+           
+            <br>
+    <br>
+    <br>
+    
+
+
+
+
+
+
+<script>
+
+
+var gotonew = function gotn(){
+
+window.location.href='bnew.php';
+
+}
+var viewmess = function vm(name){
+
+var form = document.createElement('form');
+form.style.visibility = 'hidden';
+form.method = 'POST';
+form.action = 'bmessview.php';
+var input = document.createElement('input');
+    input.name = "name";
+    input.value = name;
+    form.appendChild(input);
+document.body.appendChild(form);
+form.submit();}
+
+var readpost = function rp(id){
+    
+
+var x = document.getElementById(id);
+if (x.style.display == "block") {x.style.display = "none" } else  {x.style.display ="block" } ;
+
+    
+}
+
+
+</script>
+
+
+<br> <div class="center"><p><h3>  Homotopy Type Theory Basics</h3></p><p class="des" ></p><span id= "Homotopy Type Theory Basics" style = "display:none" > <p>      <i>Homotopy Type Theory</i> is built over Martin-Löf type theory with (higher) inductive types.  There are three kinds of judgment:<br><br>
+      
+      
+           \( \Gamma\) ctx               \(\Gamma \vdash a: A\)              
+      \( \Gamma \vdash a \equiv a': A\) <br><br>
+      
+      A <i>context</i> is a possibly empty list \(x_1 :A_1, x_2: A_2,...,x_m:A_n\) in which the variables \(x_1,...,x_n\) are all distinct and the \(A_1,A_2,...,A_n\) are types. 
+      We use \(\cdot\) to denote the empty context. 
+       
+      There is really no distinction between terms and types unlike in weaker type systems. Types are certain kinds of terms. We now specify the syntax of terms. Our presentation
+      will be geared towards implementing a proof assistant and proof checker. For a given environment we will have a list of <i>defined constants</i> \(f,f',f'',...\) along
+      with the built-in <i>primitive</i> constants \(c,c',c',...\). Terms are defined as usual as untyped \(\lambda\)-terms:<br><br>
+      
+      
+            \( t::= x \quad |\quad \lambda x.t\quad |\quad  tt' \quad |\quad  c \quad |\quad  f \)<br><br>
+
+
+We have primitive constants \(\mathcal{U}_0,\, \mathcal{U}_1,\, \mathcal{U}_2,...\) which are a cumulative hierarchy of universes. The rules of inference for
+judgments \(\Gamma\) ctx are the following<br><br>
+
+
+   
+  
+  
+  \(  \begin{prooftree} 
+ 
+ \AxiomC{$$} 
+ 
+ \RightLabel{ctx-Emp}
+ 
+ \UnaryInfC{$\cdot\quad ctx$} \quad
+ 
+  \AxiomC{$x_1:A_1,...,x_{n-1}: A_{n-1} \vdash A_n: \mathcal{U}_n$} 
+  
+  \RightLabel{ctx-Ext}
+  
+  \UnaryInfC{$(x_1:A_1,...,x_n:A_n) \text{ ctx}$}
+  
+ 
+ 
+ 
+  
+ 
+ \AxiomC{$(x_1:A_1,...,x_n:A_n) \quad \text{ctx}$} 
+ 
+ \RightLabel{Vble}
+ 
+ \UnaryInfC{$x_1:A_1,...,x_n:A_n \vdash x_i: A_i$}
+ 
+  
+ \end{prooftree} \)<br><br>
+      
+      
+ For type universes:<br><br>
+ 
+  \(  \begin{prooftree} 
+ 
+ \AxiomC{$\Gamma\quad \text{ctx}$} 
+ 
+ \RightLabel{$\mathcal{U}$-Intro  }
+ 
+ \UnaryInfC{$\Gamma\vdash \mathcal{U_i}:\mathcal{U_{i+1}}$} 
+ 
+  \AxiomC{$\Gamma\vdash A: \mathcal{U_i}$} 
+  
+  \RightLabel{$\mathcal{U}$-Cumul}
+  
+  \UnaryInfC{$\Gamma \vdash A: \mathcal{U}_{i+1}$}
+  
+ 
+ 
+ 
+  
+  
+ \end{prooftree} \)<br><br>
+      
+      Judgmental equality is an equivalence relation respected by typing:<br><br>
+      
+      
+      
+  
+  
+       \(  \begin{prooftree} 
+ 
+      \AxiomC{$\Gamma \vdash a:A$} 
+ 
+      \RightLabel{ }
+ 
+      \UnaryInfC{$\Gamma \vdash a\equiv a:A$} 
+ 
+       \AxiomC{$\Gamma \vdash  a \equiv b :A$} 
+  
+       \RightLabel{ }
+  
+       \UnaryInfC{$\Gamma \vdash  b \equiv a: A$} 
+  
+  
+    \AxiomC{$\Gamma \vdash a\equiv b:A$} 
+    
+      \AxiomC{$\Gamma \vdash b \equiv c:A$} 
+      
+       \RightLabel{ }
+      
+       \BinaryInfC{$\Gamma\vdash  a \equiv c: A$} 
+  
+  \AxiomC{$\Gamma \vdash a: A$}
+  
+  \AxiomC{$\Gamma \vdash  A\equiv B:\mathcal{U}_i$}
+  
+  \RightLabel{ }
+  
+  
+  \BinaryInfC{$\Gamma \vdash  a:B$} 
+  
+  \AxiomC{$\Gamma \vdash a \equiv b: A$}
+  
+  \AxiomC{$\Gamma\vdash  A\equiv B:\mathcal{U}_i$}
+  
+  \RightLabel{ }
+  
+  \BinaryInfC{$\Gamma \vdash  a \equiv b:B$}  \end{prooftree} \)
+      
+<br><br>
+Dependent Types:
+<br><br>
+      
+  \(
+  
+  \begin{prooftree}
+  
+  \AxiomC{$\Gamma \vdash  A:\mathcal{U}_i$}
+  
+  \AxiomC{$\Gamma, x:A \vdash B:\mathcal{U}_i$}
+  
+  \RightLabel{$\Pi$-Form  }
+  
+  \BinaryInfC{$\Gamma \vdash \Pi_{(x:A)} B:\mathcal{U}_i$}  
+ 
+ 
+ 
+ 
+ \AxiomC{$\Gamma, x:A \vdash  f(x) : B$} 
+
+ \RightLabel{$\Pi$-Intro }
+
+ \UnaryInfC{$\Gamma \vdash \lambda(x:A) f(x): \Pi_{(x:A)} B$} 
+ 
+
+  
+  \AxiomC{$\Gamma \vdash  f: \Pi_{(x:A)} B$}
+  
+  \AxiomC{$\Gamma \vdash  a:A$}
+  
+  \RightLabel{$\Pi$-Elim  }
+  
+  \BinaryInfC{$\Gamma \vdash fa: B[a/x]$}  
+ 
+ 
+
+
+\end{prooftree} 
+  
+  \)<br><br>
+  
+  
+ \( \begin{prooftree}
+ \AxiomC{$\Gamma, x:A \vdash  f(x): B$}
+ 
+ \AxiomC{$\Gamma \vdash a:A$}
+ 
+ \RightLabel{$\Pi$-Comp  }
+ 
+ \BinaryInfC{$\Gamma \vdash  (\lambda(x:A)f(x))a \equiv f(a) : B$}  
+
+ \AxiomC{$\Gamma \vdash f: \Pi_{(x:A) B}$} 
+
+  \RightLabel{$\Pi$-Uniq }
+
+  \UnaryInfC{$\Gamma \vdash  f \equiv \lambda(x:A) f(x): \Pi_{(x:A)} B$} 
+ 
+  
+       \end{prooftree} \)
+       
+       
+       
+       <br><br>
+       
+       
+       
+       
+       
+       
+      \( 
+         \begin{prooftree}
+         
+         
+       \AxiomC{$\Gamma \vdash A:\mathcal{U_i}$}
+ 
+       \AxiomC{$\Gamma, x: A \vdash B : \mathcal{U_i}$}
+ 
+       \RightLabel{$\Sigma$-Form  }
+ 
+       \BinaryInfC{$\Gamma \vdash \Sigma_{(x:A)} B: \mathcal{U_i} $}  
+
+
+
+       \AxiomC{$\Gamma, x:A  \vdash B:\mathcal{U_i}$}
+ 
+       \AxiomC{$\Gamma \vdash a : A$}
+ 
+       \AxiomC{$\Gamma \vdash b : B[a/x]$}
+       
+ 
+       \RightLabel{$\Sigma$-Intro  }
+ 
+       \TrinaryInfC{$\Gamma \vdash  (a,b): \Sigma_{(x:A)} B$}  
+
+\end{prooftree} \) <br><br>
+
+
+\( \begin{prooftree}
+
+
+
+       \AxiomC{$\Gamma, z: \Sigma_{x:A} B  \vdash C:\mathcal{U_i}$}
+ 
+       \AxiomC{$\Gamma, x:A, y:B  \vdash g : C[(x,y)/ z]$}
+ 
+       \AxiomC{$\Gamma \vdash p : \Sigma_{x:A} B$}
+       
+ 
+       \RightLabel{$\Sigma$-Elim  }
+ 
+       \TrinaryInfC{$\Gamma \vdash  \text{ind}(\Sigma_{(x:A)}B, \lambda z. C, \lambda x,y.g, p) : C[ p/z ]$}  
+
+
+  
+             \end{prooftree} \)
+       
+       <br><br>
+       
+       \( \begin{prooftree}
+
+
+
+              \AxiomC{$\Gamma, z: \Sigma_{x:A} B  \vdash C:\mathcal{U_i}$}
+ 
+              \AxiomC{$\Gamma, x:A, y:B  \vdash g : C[(x,y)/ z]$}
+ 
+              \AxiomC{$\Gamma \vdash a : A$}
+       
+              
+               \AxiomC{$\Gamma \vdash b : B[a/x]$}
+              \RightLabel{$\Sigma$-Comp  }
+ 
+              \QuaternaryInfC{$\Gamma \vdash  \text{ind}(\Sigma_{(x:A)}B, \lambda z. C, \lambda x,y.g, (a,b)) \equiv  g[a,b/ x, y]: C[ (a,b)/z ]$}  
+
+
+  
+                    \end{prooftree} \) <br><br>
+                    
+                    Coproducts: <br><br>
+                    
+                    
+                  \( \begin{prooftree}
+
+
+
+                         \AxiomC{$\Gamma \vdash A:\mathcal{U_i}$}
+ 
+                         \AxiomC{$\Gamma \vdash B: \mathcal{U_i}$}
+ 
+                       
+                         \RightLabel{$+$-Form  }
+ 
+                         \BinaryInfC{$ \Gamma \vdash A + B : \mathcal{U_i}$}  
+
+
+                         \AxiomC{$\Gamma \vdash A:\mathcal{U_i}$}
+ 
+                         \AxiomC{$\Gamma \vdash B: \mathcal{U_i}$}
+ 
+ \AxiomC{$\Gamma \vdash a : A$}                      
+                         \RightLabel{$+$-IntroL  }
+ 
+                         \TrinaryInfC{$ \Gamma \vdash  \text{inl}(a): A + B$}
+                         
+                         
+                                                   \AxiomC{$\Gamma \vdash A:\mathcal{U_i}$}
+ 
+                                                   \AxiomC{$\Gamma \vdash B: \mathcal{U_i}$}
+ 
+                           \AxiomC{$\Gamma \vdash b : B$}                      
+                                                   \RightLabel{$+$-IntroR  }
+ 
+                                                   \TrinaryInfC{$ \Gamma \vdash  \text{inr}(b): A + B$}
+                         
+                         
+                           
+
+
+
+
+  
+                               \end{prooftree} \)  <br><br>
+                    
+                    
+                    
+                    
+                        \( \begin{prooftree}
+
+
+   \AxiomC{$\Gamma, z : A + B \vdash C: \mathcal{U_i}$}
+                             
+
+                               \AxiomC{$\Gamma, x:A \vdash a: C[\text{inl}(x)/z]$}
+                               
+
+                               \AxiomC{$\Gamma, y:B \vdash b: C[\text{inl}(y)/z]$}
+ 
+                            \AxiomC{$\Gamma \vdash c : A + B$}
+       
+                        
+                               \RightLabel{$+$-Elim   }
+ 
+                               \QuaternaryInfC{$ \Gamma \vdash  \text{ind}(A+B, \lambda x. a, \lambda y. b, c ) : C[ c/z] $}
+                         
+                         
+                           
+
+
+
+
+  
+                                     \end{prooftree} \)  
+                                     
+                                     
+                          <br><br>
+                    
+                    
+                    
+                    
+                                                 \( \begin{prooftree}
+
+
+                            \AxiomC{$\Gamma, z : A + B \vdash C: \mathcal{U_i}$}
+                             
+
+                                                        \AxiomC{$\Gamma, x:A \vdash a: C[\text{inl}(x)/z]$}
+                               
+
+                                                        \AxiomC{$\Gamma, y:B \vdash b: C[\text{inl}(y)/z]$}
+ 
+                                                     \AxiomC{$\Gamma \vdash c : A$}
+       
+                        
+                                                        \RightLabel{$+$-Elim   }
+ 
+                                                        \QuaternaryInfC{$ \Gamma \vdash  \text{ind}(A+B, \lambda x. a, \lambda y. b, \text{inl}(c) ) \equiv a[c/x] : C[ \text{inl}(c)/z] $}
+                         
+                         
+                           
+
+
+
+
+  
+                                                              \end{prooftree} \)           
+                 <br><br>                      
+         
+         
+         Zero and Unit Types:
+                    
+         <br><br>
+   
+   
+   
+   
+                                \( \begin{prooftree}
+
+
+           \AxiomC{$\Gamma \quad\text{ctx}$}
+           
+           
+            
+
+       
+                                       \RightLabel{$\mathbf{0}$-Form   }
+
+\UnaryInfC{$ \Gamma \vdash \mathbf{0}: \mathcal{U_i}$}
+          
+
+
+
+           \AxiomC{$\Gamma , x:\mathbf{0} \vdash  C: \mathcal{U_i}$}
+           
+           
+            \AxiomC{$\Gamma \vdash a:\mathbf{0}$}
+
+       
+                                       \RightLabel{$\mathbf{0}$-Elim}
+
+\BinaryInfC{$ \Gamma \vdash \text{ind}(\mathbf{0},\lambda x.C,a): C[a/x]$}
+          
+
+
+
+           \AxiomC{$\Gamma \quad\text{ctx}$}
+           
+           
+            
+
+       
+                                       \RightLabel{$\mathbf{1}$-Form   }
+
+\UnaryInfC{$ \Gamma \vdash \mathbf{1}: \mathcal{U_i}$}
+          
+
+
+
+           \AxiomC{$\Gamma \quad\text{ctx}$}
+           
+           
+            
+
+       
+                                       \RightLabel{$\mathbf{1}$-Intro   }
+
+\UnaryInfC{$ \Gamma \vdash \star:\mathbf{1}$}
+          
+
+
+\end{prooftree} \)
+
+
+<br><br>
+
+
+
+\(  \begin{prooftree}
+
+
+
+
+
+
+           \AxiomC{$\Gamma , x:\mathbf{1} \vdash  C: \mathcal{U_i}$}
+           
+           \AxiomC{$\Gamma \vdash c: C[\star /x]$}
+            \AxiomC{$\Gamma \vdash a:\mathbf{1}$}
+
+       
+                                       \RightLabel{$\mathbf{1}$-Elim }
+
+\TrinaryInfC{$ \Gamma \vdash \text{ind}(\mathbf{1},\lambda x.C,c,a): C[a/x]$}
+          
+          
+
+
+
+           \AxiomC{$\Gamma , x:\mathbf{1} \vdash  C: \mathcal{U_i}$}
+           
+           \AxiomC{$\Gamma \vdash c: C[\star /x]$}
+           
+
+       
+                                       \RightLabel{$\mathbf{1}$-Comp}
+
+\BinaryInfC{$ \Gamma \vdash \text{ind}(\mathbf{1},\lambda x.C,c,\star) \equiv \star: C[\star/x]$}
+          
+          
+
+
+
+                                             \end{prooftree} \)           
+                    <br><br>
+                    Natural Number Type:
+                    <br><br>
+                    
+                    
+                    \( \begin{prooftree}
+       
+
+
+
+                  \AxiomC{$\Gamma \quad\text{ctx}$}
+           
+           
+            
+
+       
+                                              \RightLabel{$\mathbb{N}$-Form   }
+
+       \UnaryInfC{$\Gamma \vdash \mathbb{N}:\mathcal{U_i} $}             
+                    
+                    
+                    
+                               \AxiomC{$\Gamma \vdash \mathbb{N}: \mathcal{U_i}  $}
+           
+           
+            
+
+       
+                                                           \RightLabel{$\mathbb{N}$-Intro$_0$   }
+
+                    \UnaryInfC{$ \Gamma \vdash 0: \mathbb{N}$}
+                    
+                               \AxiomC{$\Gamma \vdash n: \mathbb{N} $}
+           
+           
+            
+
+       
+                                                           \RightLabel{$\mathbb{N}$-Intro$_1$   }
+
+                    \UnaryInfC{$ \Gamma \vdash succ(n): \mathbb{N}$}
+                    
+                    
+                    
+                    \end{prooftree}
+                    
+                    
+                    \)<br><br>
+                    
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma, x: \mathbb{N} \vdash  C: \mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash c_0 :C[0/x]$}
+                     
+                     
+                      \AxiomC{$\Gamma, x: \mathbb{N}, y : C \vdash c: C[succ(x)/x] $}
+                    
+                    
+                      \AxiomC{$\Gamma \vdash n: \mathbb{N} $}
+                       \RightLabel{$\mathbb{N}$-Elim   }
+                    
+                    \QuaternaryInfC{$\Gamma \vdash \text{ind}(\mathbb{N},\lambda x.C, c_0, \lambda x,y. c, n): C[n/x] $}
+                    
+                    \end{prooftree}
+                    
+                    \)<br><br>
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma, x: \mathbb{N} \vdash  C: \mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash c_0 :C[0/x]$}
+                     
+                     
+                      \AxiomC{$\Gamma, x: \mathbb{N}, y : C \vdash c: C[succ(x)/x] $}
+                    
+                    
+                    
+                       \RightLabel{$\mathbb{N}$-Comp$_0$  }
+                    
+                    \TrinaryInfC{$\Gamma \vdash \text{ind}(\mathbb{N}, \lambda x.C, c_0, \lambda x,y. c, 0) \equiv c_0: C[0/x] $}
+                    
+                    \end{prooftree}
+                    
+                    \)<br><br>
+                    
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma, x: \mathbb{N} \vdash  C: \mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash c_0 :C[0/x]$}
+                     
+                     
+                      \AxiomC{$\Gamma, x: \mathbb{N}, y : C \vdash c: C[succ(x)/x] $}
+                    
+                    
+                      \AxiomC{$\Gamma \vdash n: \mathbb{N} $}
+                       \RightLabel{$\mathbb{N}$-Comp$_1$   }
+                    
+                    \QuaternaryInfC{$\Gamma \vdash \text{ind}(\mathbb{N},\lambda x.C, c_0, \lambda x,y. c, succ(n)) \equiv c[n,  \text{ind}(\mathbb{N}, \lambda x.C,  c_0, \lambda x,y. c, n)/  x,y  ] : C[succ(n)/x] $}
+                    
+                    \end{prooftree}
+                    
+                    \)
+                    <br><br>
+                    Identity Types:
+                    
+                    
+                    <br><br>
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma \vdash  A:\mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  a: A$}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  b: A$}
+                     
+                     
+                    
+                    
+                       \RightLabel{$=$-Form  }
+                    
+                    \TrinaryInfC{$\Gamma \vdash a=_A b: \mathcal{U_i}$  }
+                    
+                     \AxiomC{$\Gamma \vdash  A:\mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  a: A$}
+                     
+                     
+                    
+                     
+                     
+                    
+                    
+                       \RightLabel{$=$-Const  }
+                    
+                    \BinaryInfC{$\Gamma \vdash \text{ref}_a :a=_A a$  }
+                    
+                    
+                    
+                    
+                    \end{prooftree}
+                    
+                    
+                    
+                    
+                    
+                    \)
+                    <br><br>
+                    
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma, x:A, y:A, p: x=_A y \vdash  C:\mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  a: A$}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  b: A$}
+                     
+                     
+                       \AxiomC{$\Gamma \vdash  p': a_A = b$}
+                     
+                     \AxiomC{$\Gamma, z:A \vdash  c: C[z,z,\text{refl}_z  /x,y,p]$}
+                    
+                       \RightLabel{$=$-Elim  }
+                    
+                    \QuinaryInfC{$\Gamma \vdash  \text{ind}_=(\lambda x,y,p.C, \lambda z.c, p') : C[a,b,p'  /x,y,p]  $  }
+                    
+                    
+                    
+                    \end{prooftree}
+                    
+                    
+                    
+                    
+                    
+                    \)
+                    
+                    
+                    
+                    <br><br>
+                    
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma, x:A, y:A, p: x=_A y \vdash  C:\mathcal{U_i} $}
+                     
+                     
+                     \AxiomC{$\Gamma \vdash  a: A$}
+                     
+                      \AxiomC{$\Gamma, z:A \vdash  c: C[z,z,\text{refl}_z  /x,y,p]$}
+                    
+                       \RightLabel{$=$-Comp  }
+                    
+                    \TrinaryInfC{$\Gamma \vdash  \text{ind}_=(\lambda x,y,p.C, \lambda z.c, \text{refl}_a)\equiv c[a /z] : C[a,a,\text{refl}_a  /x,y,p]  $  }
+                    
+                    
+                    
+                    \end{prooftree}
+                    
+                    
+                    
+                    
+                    
+                    \)<br><br>
+
+We also have the important congruences rules. <b>There are  three Weakening and Substitution derived rules</b> which can be given a simple unified expression (this will be discussed later).<br><br>
+
+                    Consider \(f,g: \Pi_{(x:A)} P(x)\). Then a <i>homotopy</i> from f to g is  a term of type \(\Pi_{(x:A)} f(x) = g(x)\)
+                    which we denote by \(f \sim g\).     One definition of the type \(\text{isequiv}(f) \) is
+                    \( \Sigma_{g:B\rightarrow A}f\circ g \sim id_B  \times \Sigma_{h:B\rightarrow A}h\circ f \sim id_A\). 
+                    The type of <i>equivalences</i> \(A\simeq B\) is given by \(\Sigma_{f:A\rightarrow B}\text{isequiv}(f)\).  <br><br>
+                    
+                    Given \(\Gamma \vdash A:\mathcal{U_i}\) and   \(\Gamma  \vdash A:\mathcal{U_i}\) we can derive
+                    
+                    \[ \Gamma, f:\Pi_{(x:A)}B, g: \Pi_{(x: A)} B \vdash \text{happly}(f,g) : (f =_{A\rightarrow B} g)\rightarrow f\sim g \]  
+                    
+                    \[ \Gamma \vdash \text{idtoeqv}(A,B): A =_{\mathcal{U_i}} B \rightarrow A\simeq B \]     
+                    
+                    Extensionality: <br><br>
+                    
+                    \(
+                    
+                    \begin{prooftree}
+                    
+                     \AxiomC{$\Gamma \vdash f: \Pi_{(x:A)} B $}
+                     
+                       \AxiomC{$\Gamma \vdash g: \Pi_{(x:A)} B $}
+                     
+                     
+                    
+                       \RightLabel{$\Pi$-Ext  }
+                    
+                    \BinaryInfC{$\Gamma \vdash  \text{funext}(f,g) : \text{isequiv}(\text{happly}(f,g)) $  }
+                    
+                    
+                    
+                    
+                    \end{prooftree}
+                    
+                    
+                    
+                    
+                    
+                    \)
+                    <br><br>
+                    Univalence:
+              <br><br>
+                    
+                                  \(
+                    
+                                  \begin{prooftree}
+                    
+                                   \AxiomC{$\Gamma \vdash A:\mathcal{U_i} $}
+                     
+                                     \AxiomC{$\Gamma \vdash B:\mathcal{U_i} $}
+                     
+                     
+                    
+                                     \RightLabel{$\mathcal{U_i}$-Univ  }
+                    
+                                  \BinaryInfC{$\Gamma \vdash  \text{univalence}(A,B): \text{isequiv}(\text{idtoeqv}(A,B)) $  }
+                    
+                    
+                    
+                    
+                                  \end{prooftree}
+                    
+                    
+                    
+                    
+                    
+                                  \)
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+</p></span>
+     <p class="foot">Sunday 06th November 2022 05:34:47 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Homotopy Type Theory Basics&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  The Philosopher and the Sophist</h3></p><p class="des" ></p><span id= "The Philosopher and the Sophist" style = "display:none" > <p>   Uwe Meixner, <i>Defending Husserl: A Plea in the Case of Wittgenstein and Company Versus Phenomenology</i>, De Gruyter, 2014. <br><br>
+
+
+The stumbling block for ill-founded pretentious philosophy is mathematics. The philosophy of
+mathematics truly occupies a central place in philosophy. How can you justify your claims
+about knowledge, truth, introspection and intuition, proof, sentences, propositions, meaning, reference, objects, without testing these claims against <i>mathematical</i> knowledge, <i>mathematical</i> truth , <i>mathematical</i> introspection and intuition, <i>mathematical</i> proof,  <i>mathematical</i> sentences, <i>mathematical</i> propositions,  <i>mathematical</i> meaning, <i>mathematical</i> reference, <i>mathematical</i> objects ? <br><br>
+
+The dominant currents in post-war Western philosophy represent everything that both Frege and Husserl most vehemently and vigorously opposed and argued against. <br><br>
+
+De dominante stromingen in de naoorlogse westerse filosofie vertegenwoordigen alles wat zowel Frege als Husserl het meest fel en krachtig tegenwerkte en tegensprak.</p></span>
+     <p class="foot">Saturday 05th November 2022 02:41:36 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;The Philosopher and the Sophist&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Vagueness, The Sorites Paradox, Manifolds and Locally Constant Sheaves</h3></p><p class="des" ></p><span id= "Vagueness, The Sorites Paradox, Manifolds and Locally Constant Sheaves" style = "display:none" > <p>   I am struck by the analogy between (A) and (B)<br><br>
+(A) If I take a sufficently small quantity (a grain) from a 'heap' then the 'heap' remains a 'heap'. I can then form in this way a chain of locally valid deductions which are false globally. <br><br>
+(B) If given a locally constant sheaf on a topological space X ( = covering space on X). I consider the stalk $F_x$ at a point x then there is a small enough neighbourhood U(x) such that the stalk $F_y$ at all y in U(x) 'looks the same' as $F_x$. I can form a closed path from x to x and transport an element w in $F_x$ in a locally trivial way such that I end up with a non-trivial transformation on $F_x$ (monodromy).<br><br>
+In homotopy type theory equality types A=B are 'spaces', infinity groupoids. I think equality (between heaps) could also be considered something like a sheaf in which a local section need not be extensible to a global section. Maybe we can interpret this way a non-transitive notion of equality ?</p></span>
+     <p class="foot">Wednesday 02nd November 2022 10:21:01 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Vagueness, The Sorites Paradox, Manifolds and Locally Constant Sheaves&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  ZFC interpretatie van Martin-Löf Typetheorie</h3></p><p class="des" ></p><span id= "ZFC interpretatie van Martin-Löf Typetheorie" style = "display:none" > <p>   Wij kunnen de Martin-Löf-typetheorie interpreteren in ZFC. Of liever: in de Kelley-Morse verzamelingenleer. Het basisidee is dat we families van verzamelingen beschouwen, verzamelingen die allemaal tot een vaste verzameling U behoren. Dit is wat we vaak doen in de categorietheorie.Laat $g : A \rightarrow U$ een functie zijn van een verzameling $A$ naar een verzameling $U$.  De verzameling van dergelijke functies wordt aangeduid met $Func(A,U)$. Wij definiëren<br><br>
+
+ $\Pi(A,U,g) = \{ f : g \in Func(A,U) \&  Func(f) \& \forall x \in A. f(x) \in g(x) \}$ <br><br>
+
+Enn ook <br><br>
+
+
+ $ \Sigma(A,U,g) = \{ (a,b) : g \in Func(A,U) \& a \in A \& b \in g(a) \}$ <br><br>
+
+
+Hoe drukken we inductie uit voor de typen 0 en 1 ? <br><br>
+
+Laat $f \in Func(1, U, g)$ ook laat $c \in g(\star)$. Dan bestaat er $Ind(f,c) \in Func(1, U, f)$.</p></span>
+     <p class="foot">Wednesday 02nd November 2022 07:53:56 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;ZFC interpretatie van Martin-Löf Typetheorie&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Proof and Algorithm</h3></p><p class="des" ></p><span id= "Proof and Algorithm" style = "display:none" > <p>   It is not only the finding of a proof, but how we found the proof
+that is an important object of analysis and formalisation.
+Is there a general methodology, strategy or algorithm for learning and finding formal proofs ?
+Can it ever be clearly known ? Are we doomed to know never knowing clearly how or why we know ? <br><br>
+
+After finding the proof we need to prove that the proof is correct.
+A formal system for proof verification. What is this formal system PVer ? <br><br>
+
+And this process can be repeated on ever higher levels. Ultimately we must
+required a pure intuition of understanding. <br><br>
+
+
+In PRA with Gödel coding we have $Bew(c_0,a)$ checking if $c_0$ is a proof of $a$.
+But then we need to show that there is a $c_1$, such that $Bew(c_1, [Bew(c_0,a)])$.
+In this way we obtain a sequence $c_0,c_1,c_2,c_3,...$ which we call a <i>Carrol Sequence</i>. <br><br>
+
+Philosophical discourse is not mere formal proof. It must have the virtue of awakening and directing
+our quest for pure intuition and the understanding of our own mind. <br><br>
+
+One could argue that Gödel's incompleteness theorem is not a purely formal result because
+it involves reflection that the proof-predicate does capture provability in the system.</p></span>
+     <p class="foot">Tuesday 01st November 2022 10:52:55 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Proof and Algorithm&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Physics, Entropy and the Origin of Life</h3></p><p class="des" ></p><span id= "Physics, Entropy and the Origin of Life" style = "display:none" > <p>   If we take a description of the solar system in terms of Newton's equations then the solutions are time-reversible.<br>
+But many phenomena in nature are observed to be non-reversible, "dissipative", hence not having time-reversible solutions. For instance, a glass falling off the table and breaking.
+The big question is: can the second law of thermodynamics be deduced from the fundamental differential equations of physics ?<br>
+Or more generally are there differential equations whose solutions are mostly entropy-increasing ?<br>
+On the other hand can we find (a system of) differential equations whose solutions are generally entropy-decreasing ? Or in which entropy-decreasing phenomena occur in relatively frequent bursts ? Differential equations which would have solutions in which the pieces spontaneously assemble into the glass on the table ? <br>
+Contemporary physics is essentially incomplete (cf. the need for dark matter, dark energy, extra dimensions, etc.). Perhaps in the complete picture entropy is actually strictly conserved. The entropy-increasing forces/fields are counterbalanced by (at present unknown) entropy-decreasing ones, in which entropy-decreasing phenomena occur in relatively frequent bursts.
+Then it is the this entropy-increasing aspect of nature that is the main cause of life, the cause of the relatively frequent bursts of increased self-organisation and complexity (which would then be further modulated (or "selected") by the constraints of the environment and the ecosystem).<br>
+Perhaps the "collapse of the wave-function" could be approached thermodynamically as well ?</p></span>
+     <p class="foot">Tuesday 01st November 2022 02:44:40 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Physics, Entropy and the Origin of Life&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Goal of the Formal Philosophy project</h3></p><p class="des" ></p><span id= "Goal of the Formal Philosophy project" style = "display:none" > <p>   Develop formal deductive systems capable of formalising philosophical and scientific theories and arguments. Make philosophy a fruitful objective collaborative endeavour in which a pluralism of views is accompanied by objectively rigorous argumentation framed in explicit and mutually agreed upon systems of formal philosophical logic. Extending Hilbert's program to science and philosophy is also a way of partially realising Leibniz's goal of a calculus ratiocinator and characteristica universalis.
+The difficulty of the specialised problems usually considered in philosophical logic and the philosophy of language should not let us loose sight of the essential role and goal of formal logic in philosophy.
+The benefit of this approach is its ontological and epistemological neutrality. The only thing required is the acceptance of the objective (interpersonal) value of engaging with others in this game of setting up formal systems and finding and checking arguments.
+This project must not be confused with projects of formalising merely the common use of natural language or with research in automatic translation, the finding of an interlingua, web ontologies, etc. <br><br>
+
+To us philosophy must start with asking the question: what is a philosophical argument ? What makes a philosophical argument valid or pursuasive ? And if there is any way to answer this, then there must be a formal answer as well. That is, all meaningful philosophical discourse must be able to be framed within the context of a mutually agreed upon formal axiomatic and deductive system. Ambiguity or vagueness is not a virtue in any philosophical text. <br><br>
+
+One cannot use Gödel's first incompleteness theorem as an argument against formal philosophy. Why ? Because this theorem is validated by the circumstance that it itself can be completely formalised within Primitive Recursive Arithmetic. It is a formal philosophical result. PRA formally 'knows' that Peano Arithmetic is proof-theoretically incomplete.<br><br>
+
+This is a daunting task. Some places to start are the examination of the work on intensional logic, knowledge representation, multi-agent systems and general systems theory, specially more axiomatic and mathematical approaches to physics (axiomatic QFT, quantum gravity) and biology (such as systems biology).<br><br>
+
+References:<br><br>
+
+Bealer, Quality and Concept.<br>
+Zalta, Abstract Objects: Introduction to Axiomatic Metaphysics.<br>
+J. Raclavsky, Belief Attitudes, Fine-Grained Intensionality and Type-Theoretic Logic.<br>
+D. Corfield, Modal Homotopy Type Theory : The Prospect of a New Logic for Philosophy. <br>
+S. Haack, Philosophy of Logics.<br>
+Mesarovic and Takahara, General Systems Theory: A Mathematical Approach.
+</p></span>
+     <p class="foot">Friday 21st October 2022 04:58:46 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Goal of the Formal Philosophy project&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  On the false science of semiotics and its philosophical errors</h3></p><p class="des" ></p><span id= "On the false science of semiotics and its philosophical errors" style = "display:none" > <p>   If we look at "semiotic" literature, for instance the writings of A. Greimas or Per Aage Brandt, we find that they are based on huge unquestioned scientific and philosophical assumptions. These assumptions insinuate themselves to colour the entire architectonic of modern semiotics.
+The first assumption is materialist neural-reductionism. This unquestioned assumption is used as a rhetorical tactic to justify hasty theoretical generalisations and limitations of consciousness, such as Brandt's semiotic base space and his theory of the present moment which is justified at most by some hand-waving gibberish about "the experiental present being built up in neural-time through integration". This is "naturalised" phenomenology which ignores all of Husserl's work and arguments. It is contradicted by philosophical meta-cognition and by abstract conceptual logical and mathematical thought in general, by states of consciousness achieved during meditation which are lucid yet not spatio-temporally localised or individualised. Also we can compare the banality of this naturalism to the interesting theories of Schopenhauer on artistic contemplation having as as condition the abrogation of individuation in space and time.
+The second assumption involves sweeping under the carpet the problems of the foundations of logic and mathematics, regarding the nature of logic, of meaning, of concepts and of mathematical entities and propositions. Mathematics employs signs certainly but only a crude nominalist conventionalism would equate them with symbols in the sense of Brandt. Brandt's classification of signs is thus fundamentally inadequate and incomplete. Also, as far as "natural" signs goes, what exactly is this "causality" he mentions ? 
+
+For French-language academic philosophy the situation is sad. From the second half of the 20th-century onwards we have a complete and total eclipse of non-physicalist and rationalist (formal logic based) philosophy. Jean-Louis Gardies is a notable exception and perhaps also Vuillemin and Bouveresse. Even slightly earlier, in the country of Descartes, Malebranche, Arnauld and the Port-Royal, Lachelier and Boutroux there were only few notable exceptions such as Albert Lautman (who was an immigrant), Brunschvicg or Gaston Berger. We will examine in the future both 19th-century "ontologism". On the other hand in biology France gave us Pierre Grassé and France's contribution to pure mathematics was outstanding (cf. the Bourbaki group and modern algebraic geometry). In Belgium there is a follower of Whitehead, Michel Weber.</p></span>
+     <p class="foot">Thursday 13th October 2022 09:29:16 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;On the false science of semiotics and its philosophical errors&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Problems with French Philosophy</h3></p><p class="des" ></p><span id= "Problems with French Philosophy" style = "display:none" > <p>   
+                  
+             
+                Serge Larivée and Éric Coulombe, <i> Psychoanalysis does not bear analysis</i>, Revue de psychoéducation, Volume 42, Issue 1, 2013, p. 185–230.
+            
+                <br>
+            
+                Frederick Crews, <i> Freud, The Making of An Illusion</i>, Metropolitan Books, 2017. 
+              
+               <br>
+           
+               Sokal and Bricmont, <i>Fashionable Nonsense: Postmodern Intellectuals' Abuse of Science</i>, 1998.
+            
+
+           <br>
+
+           Peter Kreeft,  <i>Socrates Meets Marx</i>
+
+           <br>
+
+           L. von Mises, <i>Marxism Unmasked: From Delusion to Destruction</i>
+
+           <br>
+        
+         
+            
+                 </p></span>
+     <p class="foot">Wednesday 12th October 2022 04:12:43 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Problems with French Philosophy&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Problems with the Formal Mathematics Project</h3></p><p class="des" ></p><span id= "Problems with the Formal Mathematics Project" style = "display:none" > <p>   Right now, in 2022, we can read with perfect understanding mathematical articles and books
+written a century ago. It is indeed remarkable how the way we do mathematics has stabilised.
+The difference between the mathematics of 1922 and 2022 is small compared to that between the mathematics of 1922 and 1822.
+Looking beyond classical ZFC-based mathematics, a tremendous amount of effort has been put
+into formalising all areas of mathematics within the framework of program-language implementations (for instance Coq, Agda) of the univalent extension of dependent type theory (homotopy type theory).
+But Coq and Agda are complex programs which depend on other programs (OCaml and Haskell) and frameworks (for instance operating systems and C libraries) to function. In the future if we have new CPU architectures then
+Coq and Agda would have to be compiled again. OCaml and Haskell would have to be compiled again.
+
+Both software and operating systems are rapidly changing and have always been so. What is here today is deprecated tomorrow.
+My question is: what guarantee do we have that the huge libraries of the current formal mathematics projects in Agda, Coq or other languages will still be relevant or even "runnable" (for instance type-checkable) without having to resort to emulators and computer archaeology 10, 20, 50 or 100 years from now ?
+10 years from now will Agda be backwards compatible enough to still recognise
+current Agda files ?
+Have there been any organised efforts to guarantee permanent backward compatibility for all future versions of Agda and Coq ? Or OCaml and Haskell ?
+Perhaps the formal mathematics project should be carried out within a meta-programing language, a simpler more abstract framework (with a uniform syntax) comprehensible at once to logicians, mathematicians and programers and which can be converted automatically into the latest version of Agda or Coq ?</p></span>
+     <p class="foot">Sunday 09th October 2022 02:04:11 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Problems with the Formal Mathematics Project&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Words of Pawel Tichy</h3></p><p class="des" ></p><span id= "Words of Pawel Tichy" style = "display:none" > <p>   Words of Pawel Tich&yacute; (from his book <i>The Foundation's of Frege's Logic</i>)<br><br>
+        <i>
+        
+         Fate has not been kind to Gottlob Frege and his work. His logical achievement, which dwarfed anything done by logicians over the preceding two thousand years, remained all but ignored by his contemporaries. He liberated logic from the straight-jacket of psychologism only to see others claim credit for it. He expounded his theory in a monumental two-volume work, only to find an insidious error in the very foundations of the system. He successfully challenged the rise of Hilbert-style formalism in logic only to see everybody follow in the footsteps of those who had lost the argument.
+         Ideas can live with lack of recognition. Even ignored and rejected, they are still there ready to engage the minds of those who find their own way to them. They are in danger of obliteration, however, if they are enlisted to serve conceptions and purposes incompatible with them.
+         This is what has been happening to Frege's theoretical bequest in recent decades. Frege has become, belatedly, something of a philosophical hero. But those who have elevated him to this status are the intellectual heirs of Frege's Hilbertian adversaries, hostile to all the main principles underlying Frege's philosophy. They are hostile to Frege's platonism, the view that over and above material objects, there are also functions, concepts, truth-values, and thoughts. They are hostile to Frege's realism, the idea that thoughts are independent of their expression in any language and that each of them is true or false in its own right. They are hostile to the view that logic, just like arithmetic and geometry, treats of a specific range of extra-linguistic entities given prior to any axiomatization, and that of two alternative logics—as of two alternative geometries—only one can be correct. And they are no less hostile to Frege's view that the purpose of inference is to enhance our
+         knowledge and that it therefore makes little sense to infer conclusions from premises which are not known to be true.
+         We thus see Frege lionized by exponents of a directly opposing theoretical outlook.
+        
+        
+        
+        </i></p></span>
+     <p class="foot">Friday 07th October 2022 04:28:31 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Words of Pawel Tichy&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Object Oriented Ontology</h3></p><p class="des" ></p><span id= "Object Oriented Ontology" style = "display:none" > <p>   We use object oriented programing to sketch a general systems theory ontology capable
+of serving as a semantics for natural languages.<br>
+It will be influenced slightly by game design and OS design. However we may conceive that there is authentic parellelism. At each moment in time we are given
+a list $L$ of active objects. Each object has its methods and fields and besides its initialization method its update() method. The universe $U$ is the master object which contains $L$
+as a field and its cycle involves calling update on all the objects on $L$.<br>
+Each object will also have a <i>processes</i> field which indicates which method is being executed. We can avoid deadlock and there can be interrupts and signals with different priority. Objects also will have their <i>logs</i>. Objects can also create objects must this event and its parameters must be registers within $U$.<br>
+What is space ? There is a $Map$ object which contains the current locations of all objects, a map and has methods  where(), look() and go(dir). Space is thus a mediating interface and constraint which all objects interact with. In Python we can use the inspect module. Objects should know who is calling their methods ! Also interactions between objects can be of the streaming type. <br>
+The higher objects will engage in exploration, automatic proof checking and proof generation. They will "seek" to "understand" their own code, the code of other objects and the code of the whole "universe" or community. Self-reflection, as Hofstadter recognised, is a  fundamental profound concept in philosophy and artificial intelligence and only ignorance, shallowness or dogmatism could justify discarding or down-playing it ! <br>
+We should consider self-understanding, construction of models of others based on interaction, and the combination of the two. Objects can have models, representations, of the entire community (including itself). An object can have "innate" access to the class hierarchies which serve as <i>a priori</i> templates to organise data. <br>
+Systems which can represent themselves and can reason about themselves, partial embeddings of the metalanguage in
+the language, the proof predicate, the truth predicate, intensional abstractions.<br>
+Question: if in a first-order system $T$ we can define a codification of the language and a proof-predicate which captures
+being a proof then $T$ must be able to express arithmetic ?<br>
+Objects can also examine (reflection in Smalltalk) and modify their code (assumedly in small but important ways) and their replicated version of themselves (based perhaps on an abstraction of genetics).<br>
+Think of a category $T$ and a (pseudo)functor $s: Cat \rightarrow T$. The fiber above each object $t$ in
+$T$ will be a category $C_t$. The objects are the...objects and morphisms are the  instantaneous state of their interactions and (internal) processes. However we must deal with parameters in the morphism. Note that <i>references</i> to objects rather than objects themselves are mostly passed as parameters.<br>
+The higher floors, the realms of mathematical objects are also organised naturally into categories (or higher categories), for instance, the category of schemes and the morphisms between them. In general if an object is a sheaf over some space $X$ then we can view taking sections $\Gamma(U)$ as calling a method with parameter $U$.<br>
+Our objects can also have <i>analytic oracles</i>, that is, they can compute the value of convergent power series to any degree of precision (for any complexity class of the coeficients). In fact we can consider that each object is endowed with an internal scheme, stack or other algebraic-geometric structure which determines its structure and behaviour.
+In this ontology we perceive at once the different kinds of functionally distinct languages contained in the common notion of "language". In ordinary programing we distinguish for instance between code, data, a description and a specification language.<br>
+How can we interpret the five <i>predicabilia</i> of the <i>Topics</i> using this ontology ? Just consider the judgments we can make:
+an object A is an instance of class B, a class A inherits from class B,  object A has method B, class A has method B, only class A has method B, only object A has method B,  class A is obtained from class B by adding methods(or fields) X,Y and Z,  field A of object B is in relation R to field A of object C, etc. Aristotle's use of less or better known attributes might be translated into the distinction between private and public fields and methods. <br>
+We must also consider <i>nominalisation</i>, how methods or fields can be transformed into objects (or classes).
+Finally we need to consider objects incorporated within other objects in the form of <i>parts</i>. For instance cells in living organisms.</p></span>
+     <p class="foot">Friday 07th October 2022 03:38:11 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Object Oriented Ontology&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  What is Philosophy ?</h3></p><p class="des" ></p><span id= "What is Philosophy ?" style = "display:none" > <p>     Philosophy consists in arguments presented as valid. So the analysis of what constitutes a valid argument preceeds philosophy. Such an analysis requires a formal abstraction of language and an associated deductive system. Of course
+we must carefully analyse what we mean by "abstraction of language", "deduction" (and "inference") and "validity". <br>
+The value of most philosophical texts lies in stimulating analysis and  the uncovering of fallacies, argumentative gaps, equivocations and inconsistencies. They are best seen as logical and linguistic puzzles. Otherwise what are most philosophical texts but a pretentious form of existential poetry, myth-making and ideology,  that are, when all is said and done, merely reflecting the life and personality of the philosopher and only have a <i>social</i> validity ? <br>
+Intuition and introspection are fundamental to philosophy  but their use  must manifest in the form of argumentation.
+<i>To see is to be able to show</i>. <br>
+Philosophical logic  engages in the analysis of natural language. For instance formalising the different uses
+of the words "and", "or", "not" and "if". The latter gives rise to many problems concerned with finding the right axioms for each such use (i.e. strict implication, material implication, relevant implication, etc.). Another example is intensionality. <br>
+
+Philosophical logic is more fundamental than philosophy. Perhaps the  idea of an absolute independent beginning, a radical doubt uncovering an apodictic -certainty, a linguistic <i>a prior</i> or any other such claim of philosophical boot-strapping has merely an existential, poetical validity. No formal language and deductive system, no serious arguments. No serious arguments, no philosophy.  Sorry.<br>
+
+We must seek for genuine philosophers or at least for genuine philosophical-argumentative content in so-called philosophical texts. Historically speaking, classical philosophers seemed to have exhibited a much higher philosophical standard - giving a chief place to formal rigour and argumentation. Classical philosophy depended on the axiomatic method and the project of formalising natural language based argumentation discourse. Only a modest part of modern philosophy is argumentation-based and founded on the formal axiomatic ideal. Obvious examples are Descartes, Leibniz, Spinoza and Frege. To us this is the most important aspect, independently of the views which are defended. Kant's Critique of Pure Reason is not a formal axiomatic argumentative work, only small sections (often flawed) could meet this standard. There not even an attempt to give a clear consistent definition of "reason" and "understanding".  This work is scattered with interesting ideas, projects, metaphors, phenomenological insights accompanied by an abundance of rhetorical pursuasion and sophistry. In ethics Kant appears to deploy far more formal rigour and argumentive sophistication.<br>
+
+
+The system of all algorithms $T$ in all its different embodiments (according to Church's thesis), such as $\lambda$-terms,  has an objective universal reality. $T$ is the <i>a priori</i> and the <i>given</i>. But $T$ co-implies arithmetic and all possible  recursively axiomatisable deductive systems. Our philosophy might be called <i>Hilbertian Platonism</i>.</p></span>
+     <p class="foot">Friday 07th October 2022 03:34:53 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;What is Philosophy ?&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Ordinals, Entropy and Morphogenesis</h3></p><p class="des" ></p><span id= "Ordinals, Entropy and Morphogenesis" style = "display:none" > <p>     A major unanswered philosophical question regards the mathematical structure of time. This
+is intimately connected with the problem of determinism. It is by no means established that 
+time can be adequately modelled by the real numbers $\mathbb{R}$ or a closed interval thereof.
+If time had an ordinal structure then it is easy to define a notion of transfinite computability.
+Ordinals embody a polarisation, a chosen direction given by the sucessor or limit ordinal. But the order
+of the reals does not have such a direction though the axiom of choice implies that such an order can be defined.
+The way "deterministic" systems are specified over the reals, for instance via differential (or integral-differential) equations is extremely perplexing. For then any computationally deterministic model must be considered a mere approximation
+with bounded validity relative to a given error. But this polarisation or prefered direction is present in the context of physics. We have the concept of entropy. Naively we can think of entropy as a measure of the lack of structure or information. For instance a cyphertext which cannot be deciphered because no structure can be extracted from it using statistical analysis would have maximum entropy. A class of dynamical systems which preserve a certain measure also exhibit this property of "mixing" and the dissolution of structure. Where does this direction, this symmetry breaking come from ?
+Can we define rigorously the mirror class of dynamical systems - just as deterministic - which instead is entropy decreasing and which has a <i>normal tendency</i> to evolve in the direction of producing more structure and information, even if in only sparse outbursts ? Classical systems of course can be reversed in a simple way, the gas returning to one compartment of the box is just as mathematically correct as the gas diffusion. But our models for gases are idealisations and approximations. A complete fundamental physics at the subatomic level eludes us. Maybe studying this problem first for ordinals might shed some light on the more general problem. Perhaps entropy-decreasing systems must be stochastic in the sense that the structure-informed next state is decided by some sort of probabilistic "collapse of the wave-function". We conjecture that this problem might be the key to solving the problems of both quantum theory and biological evolution and speciation. 
+Biological evolution is the result of natural systems which behave like other natural system except with time inversed. Broken shards jumping up on the table to produce a tea-cup is no more mathematically or physically mysterious than the tea-cup falling and breaking. Some of the fields of nature, such as gravity and the electroweak force, are time-positive whilst others are time-negative so that periodic bursts of spontaneous information-increasing assemblage are to be expected.
+Also the collapse of the wave-function represents the creation of information.
+ Particle physics accepted negative mass and energy and even the metaphor of "particles travelling backwards in time". 
+Perhaps time-positive and time-negative forces balance themselves so as to  produce  zero net-increase in entropy (perhaps a little like in Prigogine). We see this at the level of biochemistry in the fundamental division between anabolic and catabolic processes. The Heisenberg uncertainty principle may reflect this balance between information and uncertainty at a fundamental level. There must be laws of conservation for matter, energy <i>and information</i>.</p></span>
+     <p class="foot">Friday 07th October 2022 03:30:17 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Ordinals, Entropy and Morphogenesis&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Hegel's Philosophy of Nature</h3></p><p class="des" ></p><span id= "Hegel's Philosophy of Nature" style = "display:none" > <p>    There is a renewed interest in Hegel's philosophy of nature. For instance:<br><br><i>Hegel's Naturalism: Mind, Nature, and the Final Ends of Life</i>  - Terry Pinkard<br /><i>Real Process: How Logic and Chemistry Combine in Hegel's Philosophy of Nature</i> - John W. Burbidge<br /><i>The Problem of Nature in Hegel’s Final System</i> - Wes Furlotte<br /><i>Petrified Intelligence: Nature in Hegel’s Philosophy</i> - Alison Stone<br /><i>Hegel and the Philosophy of Nature</i> - Stephen Houlgate<br><i>Universal Biology after Aristotle, Kant, and Hegel - </i>Richard Dien Winfield</p></span>
+     <p class="foot">Friday 07th October 2022 03:29:01 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Hegel's Philosophy of Nature&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Peter Unger</h3></p><p class="des" ></p><span id= "Peter Unger" style = "display:none" > <p>     <a href="https://www.amazon.com/All-Power-World-Peter-Unger/dp/0195155610">https://www.amazon.com/All-Power-World-Peter-Unger/dp/0195155610</a><br />
+<br />
+"Unger has always been a very original and independent philosopher, never swayed excessively by fashion. One of the two main themes of <i>All the Power in the World</i> is a defense of the dualist view that mental substances or individuals are wholly non-physical, and have the power to make things happen in the physical world. For example, we have the power to act freely, and the evident exercise of this power is incompatible with physicalism.... This argument is familiar, of course, though Unger's own version of it is characteristically inventive. Less familiar are Unger's ingenious arguments for dualism later in the book, based on 'the problem of the many' for which Unger is well known.... In a fascinating discussion... Unger draws the conclusion that he is not a physical thing: dualism is true and physicalism is false."--Tim Crane, <i>Times Literary Supplement</i>
+</p></span>
+     <p class="foot">Friday 07th October 2022 03:28:25 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Peter Unger&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Against Linear Epistemology</h3></p><p class="des" ></p><span id= "Against Linear Epistemology" style = "display:none" > <p>     A particularly bad form of empiricism which also brings to light its inherent flaws is given by the following attitude. "Knowledge" is ascribing probabilites
+    	      to events, states of affair or propositions. In function of the data we progressively collect, this "knowledge" is then revised by applying
+    	      the same kind of linear transformation (or integral). Somehow then, or so the Bayesian story goes, our hypotheses become more certain.
+    	      This model is dubious. The progress of physics, in which new data was as vital as new theory was to obtain the said data - was achieved
+    	      through striking qualititative leaps and creative discontinuities, involving in a necessary way the deployment of ever more complex 
+    	      mathematical concepts held to be absolutely certain in their domain of applicability. This process - which is at the heart of all
+    	      advance in natural science - is irreducible to, and extremely far removed from applications of a uniform algorithm to formalised
+    	      probabilistic belief systems and data sets. Mathematics - or its more fundamental domains such as arithmetic - is the most certain of sciences. 
+    	      We can speak of plausibilities and heuristics at a meta-level discussing certain axioms and sure, there can be experimental-computational
+    	      approaches to certain problems. We can even develop systems of probabilistic logic, but only according to a non-probabilistic meta-theory.
+    	      But to ascribe probabilities to arithmetical propositions and somehow claim to deploy deduction 
+    	      (and should not the rules then be probabilistic too?) is plainly absurd. 
+	       
+	      
+    	      It is certainly not a key to epistemological problems or the philosophy of science. Probability is either an obvious property of a collection of data - and has nothing to do with chance or belief or certainty - or else an a priori arithmetical property of the state space of a combinatoric system - and has nothing to do with chance or belief or certainty. In conclusion: the progress of science and human knowledge is not about passively adjusting in a linear, mechanical way our theories to the evidence but about creatively interpreting new evidence in such a way that we can effect discontinuous leaps in the completeness and sophistication of our theories. This in turn leads us to ask nature new questions which can be answered with new meaningful data. This is also how living organisms relate, actively and creatively "adapt" to their changing environment. The advancement of knowledge is not about progressively "adjusting" the parameters of a fixed framework to optimise its relationship to the data (as in machine learning, or in the myth of beneficial genetic mutations) but primarily about extending in radical ways the framework itself or overhauling it completely. Another major point is that if scientific theories are axiomatic systems then the process of deducing consequences of those theories or proving their consistency is also non-linear and often not even computable.
+    <br>
+    If we want to relate combinatoric games such as Chess and Go to the concept of intelligence then the computational resources have to be factored in. It is not a question of simply winning or losing, for a massive machine operating at supra-luminal speed doing a brute force search has almost zero intelligence and yet would beat all human and machine players known at present. Also what about the concept of cheating ? Is it fair or even interesting if the computer can "cheat" and the human can't ? If a Chess player stopped the game to look up a game in a book or ran another program, would this not be cheating ? This ruling out of cheating expresses a restriction on resources.<br><br>
+    	      <i>Doing much with little, being creative, this is a reflection of true intelligence in this context of finite combinatoric games.</i><br><br> 
+    We can recall also the remarks of Bobby Fischer against play based on mere memorisation. For resources we can consider the typical space and time measures used in structural complexity theory. We can certainly measure the size and number of training sets and iterations used by Alpha Go as well as the resources used during play. For the human player, playing well, we can calculate the number of games ever played or studied, obviously incomparably less. But there is no evidence of unusual intense neural activity - i.e. use of resources - during the play that could correlate with intense conceptual strategic thinking. The resources of the human mind seem to be residually small. Hence the performance and intelligence of the human mind in games such as Chess and Go is vastly superior to programs based on machine learning</p></span>
+     <p class="foot">Friday 07th October 2022 03:27:15 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Against Linear Epistemology&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Confluence of Concepts</h3></p><p class="des" ></p><span id= "Confluence of Concepts" style = "display:none" > <p>    The history of thought is full of the discovery of unanticipiated correspondences. One example is the Curry-Howard
+correspondence. Types correspond to formulas,  \(\lambda\)-calculus terms to proofs. And subsequently it was seen that
+types correspond to sets, or more generally, to <i>spaces</i>, while terms correspond to points or more generally to \(n\)-paths in those spaces (and thus equality types correspond to higher groupoids). There is a confluence of these concepts revealed as different aspects of a single higher concept.<br>
+Units of meaning come together, they combine. But to combine they need receptors and connectors. And after combination the result must have itself new receptors and receivers as an undivided whole. Connections can have a polarity or not. This
+is found in grammar, logic and algebra.</p></span>
+     <p class="foot">Friday 07th October 2022 03:20:22 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Confluence of Concepts&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Abolishing Categories</h3></p><p class="des" ></p><span id= "Abolishing Categories" style = "display:none" > <p>      Categories are terms which encompass a given kind of discourse,  kinds of talk which are indispensable for the workings of language.  But how do we identify a term as categorical, how do we know that the denying of the existence of something is either an attempt at abolishing a category or simply taking place legitimately within a another species of  talk?  
+If I deny the existence of witches then I am denying the existence of  certain kind of being; but I am also abolishing a whole kind of  talk, namely,  witch-talk . This later fact does not invalidate the former claim. And this claim pertains itself to  a talk regarding what kind of things exist. Indeed, should the former claim turn out to be true, the abolishing of witch-talk is quite justified.
+In medieval science there was a whole kind of talk involving final causes.  Thereafter it became  quite  legitimate to question the use of this kind of language in science.  In such a debate one cannot simply appeal to the existence of a language-game in the past.
+Finally, the limits of a given kind of talk or language-game are not given to us immediately. To posit these is no longer a linguistic, but a philosophical problem.</p></span>
+     <p class="foot">Friday 07th October 2022 03:19:17 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Abolishing Categories&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  What is a Set ?</h3></p><p class="des" ></p><span id= "What is a Set ?" style = "display:none" > <p>   A set is a tree. To specify a set we can list all the elements that belong to it and then all the elements that belong to each one of these elements and so forth (rigorously this is to be understood in terms of ordinals and assuming the axiom of choice). In Cohen's forcing technique there is the notion of a P-name, where P is some set endowed with a preorder. A
+ P-name is simply a set viewed as a tree but with each node labelled with an element of P.  An ordinary set  can be seen as a P-name with its tree's nodes tagged with the top element 1
+of P. Given a P-name  and a subset G⊆P we can obtain a normal set by going through the tree and prunning off nodes whose labels do not belong to G and then forgetting the labels and considering the resulting set - this is the interpretation or evaluation map. A particular case is in which P is the set of all Borelian sets of the real interval I. A P -name in then a probabilistically described set.</p></span>
+     <p class="foot">Friday 07th October 2022 03:17:15 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;What is a Set ?&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Causality and Time</h3></p><p class="des" ></p><span id= "Causality and Time" style = "display:none" > <p>    Suppose that time \(T\)
+is endowed with a linear dense order. Let \(Q\) be the space of qualities or states of the world of some closed system. In science \(Q\) is many times only known approximately, a complete specification of a state \(q\in Q\) would required an infinite amount of information. Hence the some concept of metric or topology on \(Q\) imposes itself to give meaning to the concept of "approximation".  For simplicity we will assume that state can be known accurately and completely and that we can speak of \(Q\)-computable functions \(f\) (one can think of the standard notion but endowed with an oracle). We endow \(Q\) with a topology. How can we formulate a notion of <i>computable determinism</i> for a dense linear \(T\) ? Let \(\phi: T \rightarrow Q\) be some process. Let
+Then we say that \(\Phi\) is computationally deterministic via a \(Q\)-computable function \(f\)
+if  for every \(t\in T\) and every neighbourhood \(U\) of \(\phi(t)\) there exists a \(s < t\) such that \(f(t',t) \in U\) for all \( s < t' < t \).</p></span>
+     <p class="foot">Friday 07th October 2022 03:14:27 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Causality and Time&quot;)"> Read / Hide </button>
+     <br> </div><br><br> <div class="center"><p><h3>  Essentially Interconnected Systems</h3></p><p class="des" ></p><span id= "Essentially Interconnected Systems" style = "display:none" > <p>    How can we obtain an abstract model which expresses that each part of a
+system is "essential" in the sense that removing it results in some loss of capacity
+for the system as a whole ? That is to say, how can we obtain a mathematical model for
+what is means to be "organic" or an interconnected "whole" ? <br>
+We might take a graph-theoretic approach in which a system is modelled as a digraph, the
+vertices being "parts" and the arrows expressing a functional or dependency relationship between parts. <br>
+
+We propose th following definition. A digraph \(G = (V,E)\)
+ is <i>essentially interconnected</i> if for every \(v \in V\),
+ if we consider the digraph \(G'\) that results from removing \(v\) from \(G\),
+ then there are two distinct vertices \(a\) and \(b\) (different from \(v\))
+ which can be connected by a directed path from \(a\) to \(b\) in \(G\)
+ but not by a directed path from \(a\) to \(b\) in \(G'\).
+
+The general idea is that all vertices are "essential" in the sense that removing a vertex will effect the semiconnectivity structure of the rest of the digraph.
+
+A essentially interconnected digraph can have no source or sink vertices
+and need not be weakly connected (just take the disjoint union of cycles). Such examples are trivially also not strongly connected. Here is a weakly connected essentially interconnected graph which is not strongly connected. Let the vertices of \(G\) be \(a,b,c,d,e,f\)
+ and the directed edges be
+$$(a,b),(b,c),(c,a) , (d,e),(e,f),(f,d) , (b,d)$$
+It seems that \(G\) is essentially interconnected but is is not strongly connected as there is no oriented path from \(d\) to \(b\).</p></span>
+     <p class="foot">Friday 07th October 2022 03:13:24 PM
+  </p>  <button id="messsent" onclick="readpost(&quot;Essentially Interconnected Systems&quot;)"> Read / Hide </button>
+     <br> </div><br> 
+
+<br>
+<br>
+
+
+</div>
+<br>
+<br>
+</html>
